@@ -1,8 +1,10 @@
 #define led 13
 #define solarModule A0
 int sum = 0;
+double ratio = 5.0/1024/0;
 
 void setup() {
+  Serial.begin(9600);
   pinMode(led,OUTPUT);
   for(int i=0; i<4; i++){
     digitalWrite(led,HIGH);
@@ -21,8 +23,8 @@ void setup() {
     sum+=analogRead(A0);
     delay(1);
   }
-  sum/=100;
-  sum*=(5.0/1024.0);
+  sum/=1000;
+  sum*=ratio;
   Serial.print("The voltage is ");
   Serial.print(sum);
   Serial.println(" volts");
